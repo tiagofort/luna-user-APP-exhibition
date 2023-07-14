@@ -1,0 +1,145 @@
+<template>
+    <div>  
+        <v-app-bar
+            app
+            color="#FFFFFF"
+            flat
+        >
+            <v-app-bar-nav-icon color="#b86935" class="hidden-sm-and-up" @click="drawer = true"></v-app-bar-nav-icon>
+            <v-tabs
+                centered
+                class="hidden-sm-and-down ml-5"
+                color="#b86935"
+            >
+                <v-tab
+                  v-for="link in links"
+                  :key="link.title"
+                  @click="openPage(link.id)"
+                  router
+                  exact
+                  class="span"
+                >
+                  <v-icon color="#b86935" class="mr-2 font-weight-bold">{{ link.icon }}</v-icon>
+                  <span class="texts text--lighten-2">{{ link.title }}</span>
+                </v-tab>
+            </v-tabs>
+            <v-spacer></v-spacer>
+            <div v-if="!$auth.loggedIn" class="mr-2">
+              <v-btn icon to="/login" class="mr-5 hidden-sm-and-down">
+                  <v-icon color="#b86935" class="mr-1">mdi-login</v-icon>
+                  <span class="mr-6 hidden-sm-and-down texts">Login</span>
+              </v-btn>
+            </div>
+            <div v-if="$auth.loggedIn" class="mr-2 hidden-sm-and-down">
+              <v-btn icon @click="$auth.logout()">
+                  <v-icon color="#b86935" class="mr-1">mdi-logout</v-icon>
+                  <span class="mr-6 texts">Logout</span>
+              </v-btn>
+            </div>
+        </v-app-bar>
+        <v-navigation-drawer
+            v-model="drawer"
+            absolute
+            temporary
+            :height="getHeight"
+        >
+            <v-list
+                nav
+                dense
+            >
+                <v-list-item-group
+                  active-class="lighten-5--text text--accent-4"
+                >
+                  <v-list-item v-for="(menu,i) in links" :key="i" @click="openPage(menu.id)" link>
+                      <v-list-item-icon>
+                        <v-icon color="#b86935">{{ menu.icon }}</v-icon>
+                      </v-list-item-icon>
+                      <v-list-item-title class="texts">{{ menu.title }}</v-list-item-title>
+                  </v-list-item>
+                </v-list-item-group>
+            </v-list>
+            <v-spacer></v-spacer>
+                    <template v-slot:append>
+                        <div v-if="!$auth.loggedIn" class="pa-2">
+                          <v-btn block text icon to="/login" class="mr-5">
+                              <v-icon color="#b86935" class="mr-1">mdi-login</v-icon>
+                              <span class="texts">Login</span>
+                          </v-btn>
+                        </div>
+                        <div v-if="$auth.loggedIn" class="pa-2">
+                          <v-btn block text icon @click="$auth.logout()">
+                              <v-icon color="#b86935" class="mr-1">mdi-logout</v-icon>
+                              <span class="texts">Logout</span>
+                          </v-btn>
+                        </div>
+                    </template>
+        </v-navigation-drawer>
+    </div>
+</template>
+<script>
+export default {
+    data: () => ({
+      drawer: false,  
+      links: 
+      [        
+        {
+          icon: 'mdi-home-heart',
+          id: 0,
+          title: 'Home',
+          to: '/'
+        },
+        {
+          icon: 'mdi-necklace',
+          id: 1,
+          title: 'Accessories',
+          to: '/accessories/'
+        },
+        {
+          icon: 'mdi-information-variant',
+          id: 2,
+          title: 'About Us',
+          to: '/about_us'
+        }
+      ],
+    }),
+    methods: {
+      openPage(id){
+          if(id == 0){
+              this.$router.push({
+                name: "index",
+              });
+          }else if(id == 1){
+              this.$router.push({
+                name: "view_all-all",
+                params: { all: 'all' },
+              });
+          }else{
+              this.$router.push({
+                name: "about_us",
+              });
+          }
+      }
+    },
+    computed:{
+      getHeight(){
+        return this.$vuetify.breakpoint.height; 
+      }
+    }
+}
+</script>
+
+<style>
+
+.span:hover {
+    font-weight: 900;
+}
+
+.texts {
+    color: #b86935;
+}
+
+.bottom-button {
+  position: absolute;
+  bottom: 0;
+}
+</style>
