@@ -49,6 +49,7 @@ import Footer from '~/components/Footer.vue';
 html {
   height: 100%;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 .fundo{
