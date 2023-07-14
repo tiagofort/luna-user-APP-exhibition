@@ -2,16 +2,14 @@
   <v-app id="inspire">
     <MenuBar />
         <v-main class="fundo" fluid>
-            <v-container fluid class="px-0 ma-2">
-              <v-row>
-                <v-col
+               <v-row>
+                <v-col 
                   cols="12"
-                  class="px-0"
-                >
-                    <nuxt />
+                  class="pa-0">
+                  <nuxt />   
                 </v-col>
-              </v-row>
-            </v-container>     
+               </v-row>
+              
         </v-main>
     <SnackBar />
     <Footer />
@@ -47,11 +45,13 @@ import Footer from '~/components/Footer.vue';
 </script>
 
 <style>
-.fundo{
-  background-color: #ffffff;
+
+html {
+  height: 100%;
+  overflow: auto;
 }
 
-.no-elevation {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.fundo{
+  background-color: #ffffff;
 }
 </style>

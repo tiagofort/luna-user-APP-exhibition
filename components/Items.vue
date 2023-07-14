@@ -36,7 +36,7 @@
     </v-row>
     <v-row>
       <v-col align-self="center">
-        <v-btn @click="openItens('all')" large color="#b86935" class="white--text custom-btn btn">View All<div class="dot"></div></v-btn>
+        <button @click="openItens('all')" color="#b86935" class="custom-btn btn-15">View All</button>
       </v-col>
     </v-row>
   </v-container>
@@ -97,8 +97,8 @@ a {
 
 .custom-btn {
   width: 130px;
-  height: 40px;
-  color: #fff;
+  height: 50px;
+  color: #ffffff;
   padding: 10px 25px;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
@@ -110,45 +110,36 @@ a {
   outline: none;
 }
 
-.btn {
-  border: none;
+.btn-15 {
   background: #b86935;
-    background: linear-gradient(0deg, #b37851 0%, #b86935 100%);
-    color: #fff;
-    overflow: hidden;
-}
-.btn:hover {
-    text-decoration: none;
-    color: #fff;
-}
-.btn:before {
-    position: absolute;
-    content: '';
-    display: inline-block;
-    top: -180px;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    background-color: #fff;
-    animation: shiny-btn1 3s ease-in-out infinite;
-}
-.btn:hover{
-  opacity: .7;
+  border: 2px solid #b86935;;
+  z-index: 1;
 }
 
-.btn:active{
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+.btn-15:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
 }
 
+.btn-15:hover {
+  color: #b86935;
+  border: 1px solid #b86935;
+}
 
-@-webkit-keyframes shiny-btn1 {
-    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
-    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
-    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
-    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+.btn-15:hover:after {
+  left: 0;
+  width: 100%;
+}
+
+.btn-15:active {
+  top: 2px;
 }
 
 </style>

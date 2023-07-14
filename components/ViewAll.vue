@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-sheet class="mt-10" height="100vh">
             <v-row>   
                     <v-col xs="12" sm="12" md="6" lg="3">
                         <v-card width="390" height="680" class="hidden-sm-and-down pa-2">
@@ -126,7 +126,7 @@
                     @input="updatePage"
                 ></v-pagination>
             </v-row>
-    </v-container>     
+    </v-sheet>           
 </template>
 
 <script> 

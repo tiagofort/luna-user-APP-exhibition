@@ -5,7 +5,7 @@
             <p class="text-left texts text-lg-h6">Featured</p>
             <v-card
                 elevation="24"
-                max-width="400"
+                max-width="450"
             >
                 <v-carousel
                     :continuous="true"

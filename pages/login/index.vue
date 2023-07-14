@@ -8,25 +8,24 @@
 import Autenticacao from '@/components/Autenticacao.vue';
 
 export default {
-  data: () => ({
-        
-  }),
-     components:{
+  data: () => ({}),
+  components:{
     Autenticacao
   },
-     methods:{
+  methods:{
       async logarUsuario(loginInfo){
-        try{
-          await this.$auth.loginWith('local', {
-               data: loginInfo
-          })
-          this.$notifier.showMessage({ content: 'Welcome back! Thanks for logged in', color: 'green', time: 2000 });
-        }catch {
-          this.$notifier.showMessage({ content: 'Something went wrong! Please, try again', color: 'red', time: 2000 });
-        }
-        
+        await this.$auth.loginWith('local', {
+            data: loginInfo
+        }).then(response => {
+            this.$notifier.showMessage({ content: 'Welcome! Thanks for logged in', color: 'green', time: 2000 })
+        }).catch(error => {
+          if (error.response) {
+              const errorMessage = error.response.data.message;
+              this.$notifier.showMessage({ content: errorMessage, color: 'red', time: 2000 });
+          }
+        });  
       }
-     }
+  }
 }
 
 </script>

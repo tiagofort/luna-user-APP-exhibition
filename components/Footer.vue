@@ -1,73 +1,64 @@
 <template>
-    <v-footer
-      v-bind="configFooter"
-      color="#b86935"
-      padless
-      class="mt-5"
-    >
-      <v-row
-        justify="center"
-        no-gutters
+  <v-footer
+    dark
+    padless
+    color="#fbede4"
+    :width="getWidth"
+    class="mt-3"
+  >
+      <v-card
+        flat
+        tile
+        color="#fbede4"
+        class="mx-auto text-center"
       >
-      <strong class="mt-4">Connect with Luna Instagram</strong>
-        <v-btn
-          color="#b86935"
-          icon 
-          class="my-2"
-          @click="openIntagram(icons.url)"
-        >
-         <v-icon>
-            {{ icons.icon }}
-         </v-icon>
-        </v-btn>
-        <v-col
-          class="#e9dcd3 py-4 text-center"
-          cols="12"
-        >
-        <v-divider></v-divider>
-          <span class="mt-1">{{ new Date().getFullYear() }} — Developer - Tiago Gai</span>
-          <v-btn icon color="#b86935" @click="openIntagram('https://www.instagram.com/tiagofort/')">
-            <v-icon>mdi-instagram</v-icon>
+        <v-card-text>
+          <v-btn
+            v-for="icon in icons"
+            :key="icon.icon"
+            class="mx-4"
+            icon
+            @click="openIntagram(icon.url)"
+          >
+            <v-icon color="#b86935" size="24px">
+              {{ icon.icon }}
+            </v-icon>
           </v-btn>
-            <v-tooltip top>
-                <template v-slot:activator="{ on, attrs }">
-                    <v-icon color="#b86935" v-bind="attrs" v-on="on">
-                        mdi-home
-                    </v-icon>
-                </template>
-                <span>tiagofortalezag@gmail.com</span>
-            </v-tooltip>
-        </v-col>
-      </v-row>
-    </v-footer>
-  </template>
+        </v-card-text>
+
+        <v-card-text class="texts pt-0">
+          <span class="texts">Lunas Cristais and team thank you for your visit. Enjoy and stay connected with us on our social networks. Stay tuned for news.</span> 
+        </v-card-text>
+      
+        <v-divider></v-divider>
+
+        <v-card-text class="texts">
+          <span class="texts">{{ new Date().getFullYear() }}</span>
+        </v-card-text>
+      </v-card>
+  </v-footer>
+</template>
 
 <script>
 export default {
   data: () => ({
-    icons: 
+    icons:
+      [
         {
             icon: 'mdi-instagram',
             url: 'https://www.instagram.com/lunapedraria.ie/'
         }
+      ]  
   }),
   methods:{
     openIntagram(url){
         window.open(url, '_blank');
     }
   },
-  computed: {
-    configFooter(){
-        const config = {};
-        if(this.$vuetify.breakpoint.width < 600){
-            config.absolute = false;
-            config.app = true;
-        }else{
-            config.absolute = true;
-            config.app = false;
-        }
-        return config;
-    }
+  computed:{
+    getWidth(){
+      return this.$vuetify.breakpoint.width;
+    },
   }
 }
 </script>

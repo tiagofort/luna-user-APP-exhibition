@@ -1,21 +1,22 @@
 <template>
-  <v-container fluid class="text-center pr-0 pl-0 mr-n2 mt-n8">
-      <MainBanner />
+  <div>
+  <MainBanner /> 
+  <v-container fluid class="text-center px-0">
           <v-container :max-width="getMaxWidth" class="text-center fundo">
               <v-row justify="center" class="mb-5">
                     <v-col>
-                          <v-sheet class="pa-1">
+                          <v-sheet class="pa-1 text-center">
                               <Items />
                           </v-sheet>
                     </v-col>
                </v-row> 
                <v-row class="mb-5">
-                    <v-col sm="12" md="6" lg="4" align-self="start">
+                    <v-col xs="12" sm="12" md="6" lg="4" align-self="start">
                           <v-sheet class="pa-1">
                               <Featured />
                           </v-sheet>   
                     </v-col>
-                    <v-col sm="12" md="6" lg="8">
+                    <v-col xs="12" sm="12" md="6" lg="8">
                           <v-sheet class="pa-1">
                               <Stones />
                           </v-sheet>          
@@ -27,7 +28,8 @@
                     </v-col>
                </v-row>
           </v-container> 
-</v-container>
+  </v-container>
+</div>
 </template>
 
 <script>

@@ -3,12 +3,11 @@
         <v-app-bar
             app
             color="#FFFFFF"
-            flat
         >
             <v-app-bar-nav-icon color="#b86935" class="hidden-sm-and-up" @click="drawer = true"></v-app-bar-nav-icon>
             <v-tabs
                 centered
-                class="hidden-sm-and-down ml-5"
+                class="hidden-xs-only ml-5"
                 color="#b86935"
             >
                 <v-tab
@@ -17,7 +16,7 @@
                   @click="openPage(link.id)"
                   router
                   exact
-                  class="span"
+                 
                 >
                   <v-icon color="#b86935" class="mr-2 font-weight-bold">{{ link.icon }}</v-icon>
                   <span class="texts text--lighten-2">{{ link.title }}</span>
@@ -39,16 +38,32 @@
         </v-app-bar>
         <v-navigation-drawer
             v-model="drawer"
-            absolute
-            temporary
+            :absolute="getAbsolute"
+            :app="getApp"
             :height="getHeight"
         >
+            <v-sheet class="pa-2" height="60" color="#b86935">
+                  <v-btn
+                    color="#BDBDBD"
+                    small
+                    fab
+                    right
+                    absolute
+                    outlined
+                    @click="drawer = !drawer"
+                  >
+                      <v-icon color="white">mdi-close</v-icon>
+                  </v-btn>
+            </v-sheet>
+            <v-divider></v-divider>
             <v-list
                 nav
                 dense
             >
                 <v-list-item-group
-                  active-class="lighten-5--text text--accent-4"
+                    v-model="group"
+                    active-class="white--text text--accent-4"
+                    class="mt-5"
                 >
                   <v-list-item v-for="(menu,i) in links" :key="i" @click="openPage(menu.id)" link>
                       <v-list-item-icon>
@@ -60,26 +75,27 @@
             </v-list>
             <v-spacer></v-spacer>
                     <template v-slot:append>
-                        <div v-if="!$auth.loggedIn" class="pa-2">
+                        <div v-if="!$auth.loggedIn" class="pa-2 mb-10">
                           <v-btn block text icon to="/login" class="mr-5">
                               <v-icon color="#b86935" class="mr-1">mdi-login</v-icon>
                               <span class="texts">Login</span>
                           </v-btn>
                         </div>
-                        <div v-if="$auth.loggedIn" class="pa-2">
+                        <div v-if="$auth.loggedIn" class="pa-2 mb-15">
                           <v-btn block text icon @click="$auth.logout()">
                               <v-icon color="#b86935" class="mr-1">mdi-logout</v-icon>
                               <span class="texts">Logout</span>
                           </v-btn>
                         </div>
-                    </template>
+                    </template> 
         </v-navigation-drawer>
     </div>
 </template>
 <script>
 export default {
     data: () => ({
-      drawer: false,  
+      drawer: false,
+      group: false,  
       links: 
       [        
         {
@@ -123,6 +139,15 @@ export default {
     computed:{
       getHeight(){
         return this.$vuetify.breakpoint.height; 
+      },
+      getWidth(){
+        return this.$vuetify.breakpoint.width - (this.$vuetify.breakpoint.width * 0.01);
+      },
+      getApp(){
+        return this.$vuetify.breakpoint.xs ? true : false;
+      },
+      getAbsolute(){
+        return this.$vuetify.breakpoint.xs? false : true;
       }
     }
 }

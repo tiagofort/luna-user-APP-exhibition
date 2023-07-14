@@ -2,7 +2,7 @@
     <v-container>
         <p class="text-left texts text-lg-h6">Stones</p>
             <v-row class="pa-2">
-                <v-col v-for="(item,i) in stones" :key="i" sm="6" md="6" lg="3" class="pa-2 d-flex align-center justify-center">
+                <v-col v-for="(item,i) in stones" :key="i" sm="4" md="4" lg="3" class="pa-2 d-flex align-center justify-center">
                     <v-sheet width="80" class="texts">
                         <a><v-img @click="openStoneDetail(item.name)" width="80" :src="item.stone"></v-img></a><span class="texts">{{ item.name }}</span>
                     </v-sheet>
