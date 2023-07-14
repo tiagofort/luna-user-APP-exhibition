@@ -3,15 +3,15 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - luna-app',
-    title: 'luna-app',
+    titleTemplate: '%s - The magic of crystals in every detail',
+    title: 'Luna Crystals',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico',
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico',
         rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=PT+Sans&display=swap'
       }
     ]
