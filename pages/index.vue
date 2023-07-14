@@ -98,10 +98,6 @@ export default {
   background-color: #ffffff;
 }
 
-.no-elevation {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-
 .texts {
     color: #b86935;
 }

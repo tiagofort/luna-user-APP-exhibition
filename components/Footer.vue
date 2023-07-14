@@ -1,7 +1,7 @@
 <template>
     <v-footer
       v-bind="configFooter"
-      color="#ffe2d4"
+      color="#b86935"
       padless
       class="mt-5"
     >
