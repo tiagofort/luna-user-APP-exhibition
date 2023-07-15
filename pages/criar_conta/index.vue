@@ -45,7 +45,6 @@ export default {
 <style>
 .fundo {
   background-color: #ffffff;
-
 }
 
 </style>

@@ -36,7 +36,7 @@
     </v-row>
     <v-row>
       <v-col align-self="center">
-        <button @click="openItens('all')" color="#b86935" class="custom-btn btn-15">View All</button>
+        <button @click="openItens('all')" color="#b86935" class="custom-btn btn">View All</button>
       </v-col>
     </v-row>
   </v-container>
@@ -110,13 +110,13 @@ a {
   outline: none;
 }
 
-.btn-15 {
+.btn {
   background: #b86935;
   border: 2px solid #b86935;;
   z-index: 1;
 }
 
-.btn-15:after {
+.btn:after {
   position: absolute;
   content: "";
   width: 0;
@@ -128,17 +128,17 @@ a {
   transition: all 0.3s ease;
 }
 
-.btn-15:hover {
+.btn:hover {
   color: #b86935;
   border: 1px solid #b86935;
 }
 
-.btn-15:hover:after {
+.btn:hover:after {
   left: 0;
   width: 100%;
 }
 
-.btn-15:active {
+.btn:active {
   top: 2px;
 }
 

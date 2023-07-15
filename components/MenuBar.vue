@@ -81,7 +81,7 @@
                               <span class="texts">Login</span>
                           </v-btn>
                         </div>
-                        <div v-if="$auth.loggedIn" class="pa-2 mb-15">
+                        <div v-if="$auth.loggedIn" class="pa-2 mb-10">
                           <v-btn block text icon @click="$auth.logout()">
                               <v-icon color="#b86935" class="mr-1">mdi-logout</v-icon>
                               <span class="texts">Logout</span>

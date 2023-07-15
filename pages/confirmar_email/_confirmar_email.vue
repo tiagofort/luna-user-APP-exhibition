@@ -5,7 +5,7 @@
             <v-col class="text-center">
                 <span class="white--text text-h5">Thansk for confirming your email!</span><br>
                 <span class="white--text text-h5">Click on the button to go to the Login Page</span><br>
-                <v-btn class="mt-5" @click="redirecionar()">Login</v-btn>
+                <v-btn color="#b86935" class="mt-5 custom-btn btn" @click="redirecionar()">Login</v-btn>
             </v-col>
             <v-col></v-col>
         </v-row>
@@ -45,8 +45,55 @@ export default {
 </script>
 
 <style>
-.fundo {
-  background-color: #0b0418;
 
+.fundo {
+  background-color: #FFFFFF;
+}
+
+.custom-btn {
+  width: 130px;
+  height: 50px;
+  color: #ffffff;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+}
+
+.btn {
+  background: #b86935;
+  border: 2px solid #b86935;;
+  z-index: 1;
+}
+
+.btn:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  color: #b86935;
+  border: 1px solid #b86935;
+}
+
+.btn:hover:after {
+  left: 0;
+  width: 100%;
+}
+
+.btn:active {
+  top: 2px;
 }
 </style>
