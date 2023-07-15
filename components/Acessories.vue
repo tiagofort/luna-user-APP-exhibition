@@ -33,7 +33,7 @@
         </v-dialog>
         <Request ref="Request" :submeterPedido="enviarPedido" :closeRequest="fecharRequest" :dialogRequest="dialogRequest"/>
         <v-row class="d-flex justify-center">
-                <v-col md="12" sm="12" xs="12" lg="4">
+                <v-col xs="12" sm="12" md="8" lg="6" xl="6">
                     <v-carousel class="white" width="450" height="600" :show-arrows="false">
                         <v-carousel-item
                             v-for="(n,i) in imgs"
@@ -46,7 +46,7 @@
                 </v-col>
                 <v-col class="mt-5" xs="12" sm="12" md="12" lg="8">
                     <v-sheet class="" color="white" height="auto">
-                        <v-card-title class="texts mb-n3">{{ items.titulo }}</v-card-title>
+                        <v-card-title class="texts mb-n3 smaller-text">{{ items.titulo }}</v-card-title>
                             <div class="text-left texts ml-4 mb-2">{{ items.subtitulo }}</div>
                         <v-row class="ml-1 mt-n1 mb-1">
                             <v-rating class="ml-1 mb-2 texts" length="5" v-model="rating" color="warning" readonly small half-increments></v-rating>
@@ -54,8 +54,8 @@
                         </v-row>
                         <v-divider width="60%" class="white mb-2"></v-divider>
                         <div class="ml-3 text-left texts">
-                          <strong class="mr-2">- Product code:</strong>
-                          <span>{{ items.cod_prod }}</span>
+                          <strong class="mr-2 smaller-text">- Product code:</strong>
+                          <span class="smaller-text">{{ items.cod_prod }}</span>
                         </div> <br>
                         <div class="ml-3 text-left texts">
                           <strong class="mr-2">- Type: </strong>
@@ -545,6 +545,20 @@ export default {
 
 .line-through{
   text-decoration: line-through;
+}
+
+.smaller-text {
+  font-size: 16px; /* Default font size for larger screens */
+
+  @media (max-width: 600px) {
+    /* Smaller font size for extra small screens and up to 600px */
+    font-size: 14px;
+  }
+
+  @media (max-width: 960px) {
+    /* Even smaller font size for small screens up to 960px */
+    font-size: 12px;
+  }
 }
 
 </style>

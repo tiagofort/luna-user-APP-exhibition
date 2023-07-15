@@ -1,7 +1,7 @@
 <template>
-    <v-sheet class="mt-10" height="100vh">
+    <v-sheet class="mt-10" height="200vh">
             <v-row>   
-                    <v-col xs="12" sm="12" md="6" lg="3">
+                    <v-col xs="12" sm="12" md="6" lg="3" xl="3">
                         <v-card width="390" height="680" class="hidden-sm-and-down pa-2">
                             <v-card-title class="text-center texts">Filters</v-card-title>
                             <v-card-title class="text-left subtitle-1 texts">Stones</v-card-title>
@@ -41,7 +41,7 @@
                             <v-btn block color="#b86935" class="white--text mb-3" @click="filters()">Filter</v-btn>
                             <v-btn block color="#b86935" class="white--text" @click="cleanFilter()">Clean</v-btn>   
                         </v-card>
-                        <v-card width="390" class="hidden-md-and-up">
+                        <v-card :width="getWidth" class="hidden-md-and-up">
                             <v-expansion-panels  v-model="isOpen" accordion>
                                 <v-expansion-panel>
                                     <v-expansion-panel-header class="texts">Filters</v-expansion-panel-header>
@@ -154,6 +154,9 @@ export default {
     await this.getCadProd();
   },
   computed:{
+      getWidth(){
+        return this.$vuetify.breakpoint.width;
+      },
       getMaxWidth (){
         return this.$vuetify.breakpoint.width - (this.$vuetify.breakpoint.width * 0.2);
       },

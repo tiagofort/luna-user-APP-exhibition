@@ -10,22 +10,22 @@
                           </v-sheet>
                     </v-col>
                </v-row> 
-               <v-row class="mb-5">
-                    <v-col xs="12" sm="12" md="6" lg="4" align-self="start">
+               <v-row class="mb-5" align="center" justify="center">
+                    <v-col xs="12" sm="12" md="12" lg="4" class="hidden-xs-and-down d-flex justify-center align-center">
+                          <v-sheet class="pa-5 hidden-xs-only">
+                              <Featured />
+                          </v-sheet>   
+                    </v-col>
+                    <v-col xs="12" sm="12" md="12" lg="4" class="hidden-sm-and-up">
                           <v-sheet class="pa-1">
                               <Featured />
                           </v-sheet>   
                     </v-col>
-                    <v-col xs="12" sm="12" md="6" lg="8">
+                    <v-col xs="12" sm="12" md="12" lg="8">
                           <v-sheet class="pa-1">
                               <Stones />
                           </v-sheet>          
                     </v-col>  
-               </v-row>
-               <v-row>
-                    <v-col cols="12">  
-                        <v-sheet height="100"></v-sheet>
-                    </v-col>
                </v-row>
           </v-container> 
   </v-container>

@@ -87,6 +87,7 @@ export default {
 </script>
 
 <style>
+
 .texts {
     color: #b86935;
 }
