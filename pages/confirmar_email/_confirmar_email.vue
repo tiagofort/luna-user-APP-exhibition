@@ -3,9 +3,9 @@
         <v-row class="mt-5">
             <v-col></v-col>
             <v-col class="text-center">
-                <span class="white--text text-h5">Thansk for confirming your email!</span><br>
-                <span class="white--text text-h5">Click on the button to go to the Login Page</span><br>
-                <v-btn color="#b86935" class="mt-5 custom-btn btn" @click="redirecionar()">Login</v-btn>
+                <span class="texts text-h5">Thansk for confirming your email!</span><br>
+                <span class="texts text-h5">Click on the button to go to the Login Page</span><br>
+                <button color="#b86935" class="mt-5 custom-btn btn" @click="redirecionar()">Login</button>
             </v-col>
             <v-col></v-col>
         </v-row>
@@ -48,6 +48,10 @@ export default {
 
 .fundo {
   background-color: #FFFFFF;
+}
+
+.texts {
+    color: #b86935;
 }
 
 .custom-btn {
