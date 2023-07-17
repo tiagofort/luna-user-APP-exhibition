@@ -34,12 +34,13 @@
         <Request ref="Request" :submeterPedido="enviarPedido" :closeRequest="fecharRequest" :dialogRequest="dialogRequest"/>
         <v-row class="d-flex justify-center">
                 <v-col xs="12" sm="12" md="6" lg="6" xl="6">
-                    <v-carousel class="white" width="450" height="600" :show-arrows="false">
+                    <v-carousel class="white" max-width="500" height="600" :show-arrows="false" virtual-mode>
                         <v-carousel-item
                             v-for="(n,i) in imgs"
                             :key="i"
                             :src="n"
                             contain
+                            virtual-mode
                             :cycle="true"
                         ></v-carousel-item>
                     </v-carousel>
@@ -53,8 +54,8 @@
                               {{ items.subtitulo }}
                             </div>
                         <v-row class="ml-1 mt-n1 mb-1">
-                            <v-rating class="ml-1 mb-2 texts" length="5" v-model="rating" color="warning" readonly small half-increments></v-rating>
-                            <span class="mt-2 text-caption texts">
+                            <v-rating class="ml-1 mb-2 texts text-left" length="5" v-model="rating" color="warning" readonly small half-increments></v-rating>
+                            <span class="mt-2 ml-3 text-caption texts text-left">
                               {{ rating }} stars - ({{ reviews }} reviews)
                             </span>
                         </v-row>
@@ -190,7 +191,7 @@
                         </v-expansion-panel-header>
                             <v-expansion-panel-content>
                                     <v-sheet
-                                        class="mx-auto mt-2 pa-2 overflow-y-auto"
+                                        class="mx-auto mt-2 pa-0 overflow-y-auto"
                                         color="white"
                                         max-width="100%" 
                                         height="250"
@@ -198,15 +199,15 @@
                                         <v-card-text color="white" class="ma-auto text-center" v-if="comentarios.length == 0" max-width="700">
                                             <v-card-subtitle class="texts">No comments until now</v-card-subtitle>
                                         </v-card-text>
-                                        <v-sheet color="white" class="pa-4 text-center" max-width="auto" height="400">
+                                        <v-sheet color="white" class="pa-0 text-center" max-width="auto" height="400">
                                             <v-list v-if="getComentarios.length > 0" color="white" three-line>
-                                                    <v-list-item v-for="(item, index) in getComentarios" :key="index">
+                                                    <v-list-item v-for="(item, index) in getComentarios" :key="index" class="pl-0">
                                                         <v-list-item-avatar>
                                                             <v-img :src="item.avatar"></v-img>
                                                         </v-list-item-avatar>
                                                         <v-list-item-content>
                                                                 <v-list-item-title class="text-left texts" v-html="item.cliente"></v-list-item-title>
-                                                                    <div v-if="$auth.loggedIn">
+                                                                    <div v-if="$auth.loggedIn" class="mb-3">
                                                                         <v-btn 
                                                                             v-if="$auth.user._id == item.id_cliente"
                                                                             icon 
@@ -214,12 +215,12 @@
                                                                             absolute 
                                                                             top 
                                                                             right 
-                                                                            class="texts"
+                                                                            class=""
                                                                             @click="deletarComentario(item._id)">
-                                                                            <v-icon>mdi-delete-circle</v-icon>
+                                                                            <v-icon color="#b86935">mdi-delete-circle</v-icon>
                                                                         </v-btn>
                                                                     </div>
-                                                                <v-list-item-subtitle class="text-left texts" v-html="item.comentario"></v-list-item-subtitle>
+                                                                <div class="text-left" v-html="item.comentario"></div>
                                                                 <v-divider></v-divider>    
                                                         </v-list-item-content>
                                                     </v-list-item>
@@ -240,7 +241,7 @@
                 </v-expansion-panels>         
             </v-col>
         </v-row>
-        <div class="mt-5 mb-5 text-h5 texts text-left">
+        <div v-if="sliceItens.length > 0" class="mt-5 mb-5 text-h5 texts text-left">
           What people usually buy together
         </div>
         <v-row>
@@ -248,18 +249,18 @@
                 v-for="(item,i) in sliceItens"
                 :key="i"
                 :id="item._id"
-                class="d-flex justify-center child-flex"
+                class="d-flex justify-start child-flex"
                 :cols="getCols"
             >
-                    <v-sheet max-width="350">
+                    <v-sheet max-width="250">
                         <v-hover>
                             <template v-slot:default="{ hover }">  
                                 <a>
                                     <v-img
                                       :src="hover? item.midia.url2 : item.midia.url1"
                                       aspect-ratio="1"
-                                      max-width="350"
-                                      max-height="450"
+                                      max-width="250"
+                                      max-height="350"
                                       class="grey lighten-2"
                                       @click="openItem(item._id)"
                                     ></v-img>
@@ -583,7 +584,7 @@ computed: {
 
   getSize() {
     switch (this.$vuetify.breakpoint.name) {
-      case 'xs': return 25
+      case 'xs': return 15
       case 'sm': return 30
       case 'md': return 35
       case 'lg': return 45

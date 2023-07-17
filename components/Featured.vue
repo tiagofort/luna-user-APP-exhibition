@@ -12,6 +12,7 @@
                       :show-arrows="true"
                       hide-delimiter-background
                       delimiter-icon="mdi-minus"
+                      virtual-mode
                   >
                           <a>
                             <v-carousel-item
@@ -19,6 +20,7 @@
                                 :key="i"
                                 :src="slide.url"
                                 class="transparent"
+                                virtual-mode
                                 @click="openFeatured(slide.id_produto)"
                             >
                             </v-carousel-item>

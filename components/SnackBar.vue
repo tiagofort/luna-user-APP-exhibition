@@ -1,10 +1,14 @@
 <template>
-    <v-snackbar v-model="show" :color="color" :timeout="timeout">
-    {{ message }}
-    <template v-slot:action="{ attrs }">
-      <v-btn v-bind="attrs" text @click="show = false">Close</v-btn>
-    </template>
-  </v-snackbar>
+  <v-row>
+    <v-col>
+      <v-snackbar v-model="show" :color="color" :timeout="timeout">
+        {{ message }}
+        <template v-slot:action="{ attrs }">
+          <v-btn v-bind="attrs" text @click="show = false">Close</v-btn>
+        </template>
+      </v-snackbar>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
