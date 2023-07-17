@@ -42,8 +42,8 @@
                             <v-btn block color="#b86935" class="white--text" @click="cleanFilter()">Clean</v-btn>   
                         </v-card>
                         <v-card :width="getWidth" class="hidden-md-and-up">
-                            <v-expansion-panels  v-model="isOpen" accordion>
-                                <v-expansion-panel>
+                            <v-expansion-panels v-model="isOpen" accordion>
+                                <v-expansion-panel @click="itemsVisibility()">
                                     <v-expansion-panel-header class="texts">Filters</v-expansion-panel-header>
                                     <v-expansion-panel-content class="pb-2">
                                         <v-card-title class="text-left subtitle-1 texts mb-n5">Stones</v-card-title>
@@ -86,7 +86,7 @@
                         </v-card>
                     </v-col>
                     <v-col xs="6" sm="12" md="6" lg="9">
-                        <v-row class="pa-2" justify="start" align="start" :key="render">       
+                        <v-row v-if="show === true" class="pa-2" justify="start" align="start" :key="render">       
                                 <v-col 
                                     v-for="(item,i) in paginatedItems"
                                     :key="i"
@@ -135,6 +135,7 @@ export default {
       return {
       render: 0,  
       itens: [],
+      show: true,
       backup_items: [],
       selectPedra: '',
       selectTipo: '',
@@ -179,6 +180,9 @@ export default {
    renderizar(){
       this.render += 1;
    },
+   itemsVisibility(){
+      this.show === true? this.show = false : this.show = true; 
+   },
    async getItens (){
     let param = this.getId();
     this.$axios
@@ -215,9 +219,11 @@ export default {
         this.selectMaterial = '';
         this.selectPreco = '';
         this.isOpen = [];
+        this.show = true;
     },
     filters(){
         this.isOpen = [];
+        this.show = true;
         let temp = [];
         this.itens = this.backup_items;
         if(this.selectPedra !== '' && this.selectTipo === '' && this.selectMaterial === '' && this.selectPreco === ''){ 

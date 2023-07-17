@@ -41,7 +41,7 @@ export default {
     }
   },
   methods:{
-    initializeSlides() {
+    async initializeSlides() {
       this.$axios
         .get("/slide/buscarSlides")
         .then((response) => (this.slides = response.data));
@@ -54,8 +54,8 @@ export default {
       });
     }
   },
-  mounted() {
-    this.initializeSlides();
+  async mounted() {
+    await this.initializeSlides();
   }
 }
 </script>
