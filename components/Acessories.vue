@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+  <v-sheet height="auto">
         <v-dialog
             v-model="dialog"
             persistent
@@ -32,107 +32,214 @@
             </v-card>
         </v-dialog>
         <Request ref="Request" :submeterPedido="enviarPedido" :closeRequest="fecharRequest" :dialogRequest="dialogRequest"/>
-        <v-row class="d-flex justify-center">
-                <v-col xs="12" sm="12" md="6" lg="6" xl="6">
-                    <v-carousel class="white" max-width="500" height="600" :show-arrows="false" virtual-mode>
-                        <v-carousel-item
-                            v-for="(n,i) in imgs"
-                            :key="i"
-                            :src="n"
-                            contain
-                            virtual-mode
-                            :cycle="true"
-                        ></v-carousel-item>
-                    </v-carousel>
-                </v-col>
-                <v-col class="mt-5" xs="12" sm="12" md="6" lg="6" xl="6">
-                    <v-sheet class="" color="white" height="auto">
-                        <v-card-title class="texts mb-n3">
-                          {{ items.titulo }}
-                        </v-card-title>
-                            <div class="text-left texts ml-4 mb-2">
-                              {{ items.subtitulo }}
-                            </div>
-                        <v-row class="ml-1 mt-n1 mb-1">
-                            <v-rating class="ml-1 mb-2 texts text-left" length="5" v-model="rating" color="warning" readonly small half-increments></v-rating>
-                            <span class="mt-2 ml-3 text-caption texts text-left">
-                              {{ rating }} stars - ({{ reviews }} reviews)
+        <div class="hidden-xs-only mt-5">
+          <v-row class="d-flex justify-center">
+                  <v-col sm="6" md="6" lg="6" xl="6">
+                      <v-carousel class="white" max-width="500" height="600" :show-arrows="false" virtual-mode>
+                          <v-carousel-item
+                              v-for="(n,i) in imgs"
+                              :key="i"
+                              :src="n"
+                              contain
+                              virtual-mode
+                              :cycle="true"
+                          ></v-carousel-item>
+                      </v-carousel>
+                  </v-col>
+                  <v-col class="mt-5" sm="6" md="6" lg="6" xl="6">
+                      <v-sheet class="" color="white" height="auto">
+                          <v-card-title class="texts mb-n3">
+                            {{ items.titulo }}
+                          </v-card-title>
+                              <div class="text-left texts ml-4 mb-2">
+                                {{ items.subtitulo }}
+                              </div>
+                          <v-row class="ml-1 mt-n1 mb-1">
+                              <v-rating class="ml-1 mb-2 texts text-left" length="5" v-model="rating" color="warning" readonly small half-increments></v-rating>
+                              <span class="mt-2 ml-3 text-caption texts text-left">
+                                {{ rating }} stars - ({{ reviews }} reviews)
+                              </span>
+                          </v-row>
+                          <v-divider width="60%" class="texts mb-2"></v-divider>
+                          <div class="ml-3 text-left texts">
+                            <strong class="mr-2 smaller-text">- Product code:</strong>
+                            <span class="smaller-text">
+                              {{ items.cod_prod }}
                             </span>
-                        </v-row>
-                        <v-divider width="60%" class="white mb-2"></v-divider>
-                        <div class="ml-3 text-left texts">
-                          <strong class="mr-2 smaller-text">- Product code:</strong>
-                          <span class="smaller-text">
-                            {{ items.cod_prod }}
-                          </span>
-                        </div> <br>
-                        <div class="ml-3 text-left texts">
-                          <strong class="mr-2">- Type: </strong>
-                          <span>
-                            {{ items.tipo }}
-                          </span>
-                        </div> <br>
-                        <div class="ml-3 text-left texts">
-                          <strong class="mr-2">- Material: </strong>
-                          <span>
-                            {{ items.material }}
-                          </span>
-                        </div> <br>
-                        <div class="ml-3 text-left texts">
-                          <strong class="mr-2">- Stone: </strong>
-                          <span>
-                            {{ items.pedra }}
-                          </span>
-                        </div> <br>
-                        <div class="ml-3 text-left texts">
-                          <strong class="mr-2">- Weight: </strong>
-                          <span>
-                            {{ items.peso }} grams
-                          </span>
-                        </div> <br>
-                        <div class="ml-3 text-left texts">
-                          <strong class="mr-2">- About: </strong>
-                        </div> <br>
-                        <div class="ml-5 mt-n5 mb-3 text-left texts">
-                          <span>
-                            {{ items.comentario }}
-                          </span>
-                        </div>
-                        <div v-if="items.desconto == 0" class="ml-3 text-left texts">
-                          <strong class="mr-2 text-h4">- Price: </strong>
-                          <span class="text-h4">
-                            €{{ items.preco }}
-                          </span>
-                        </div> <br>
-                        <div v-if="items.desconto !== 0" class="ml-3 text-left texts">
-                          <strong class="mr-2 text-h4 line-through">- Price: </strong>
-                          <span class="text-h4 line-through">
-                            €{{ items.preco }}
-                          </span>
-                        </div> <br>
-                        <div v-if="items.desconto !== 0" class="ml-3 text-left texts">
-                          <strong class="mr-2 text-h4">- Sale Price: </strong>
-                          <span class="text-h4">
-                            €{{ getDesconto(items.preco) }}
-                          </span>
-                        </div> <br>
-                        <div class="ml-3 mt-n5 text-left texts">
-                          <strong class="mr-2 text-body-1">- Inventory: </strong>
-                          <span class="text-body-1">
-                            {{ estoque_atual.estoque_atual }}
-                          </span> 
-                          <span v-if="estoque_atual.estoque_atual == 0">(Out of stock)</span>
-                        </div> <br>
-                        <div class="text-left">
-                          <v-btn v-if="$auth.loggedIn" color="#b86935" class="white--text mb-3" @click="requisicao()">Make a request</v-btn>
-                          <p v-if="$auth.loggedIn"> Or send us message: +353 089 941 4489</p>
-                        </div>
-                        <div class="text-left">
-                          <span  v-if="!$auth.loggedIn" class="red--text">You must be logged in to request this product</span>
-                        </div>
-                    </v-sheet>
-                </v-col>
-        </v-row>
+                          </div> <br>
+                          <div class="ml-3 text-left texts">
+                            <strong class="mr-2">- Type: </strong>
+                            <span>
+                              {{ items.tipo }}
+                            </span>
+                          </div> <br>
+                          <div class="ml-3 text-left texts">
+                            <strong class="mr-2">- Material: </strong>
+                            <span>
+                              {{ items.material }}
+                            </span>
+                          </div> <br>
+                          <div class="ml-3 text-left texts">
+                            <strong class="mr-2">- Stone: </strong>
+                            <span>
+                              {{ items.pedra }}
+                            </span>
+                          </div> <br>
+                          <div class="ml-3 text-left texts">
+                            <strong class="mr-2">- Weight: </strong>
+                            <span>
+                              {{ items.peso }} grams
+                            </span>
+                          </div> <br>
+                          <div class="ml-3 text-left texts">
+                            <strong class="mr-2">- About: </strong>
+                          </div> <br>
+                          <div class="ml-5 mt-n5 mb-3 text-left texts">
+                            <span>
+                              {{ items.comentario }}
+                            </span>
+                          </div>
+                          <div v-if="items.desconto == 0" class="ml-3 text-left texts">
+                            <strong class="mr-2 text-h4">- Price: </strong>
+                            <span class="text-h4">
+                              €{{ items.preco }}
+                            </span>
+                          </div> <br>
+                          <div v-if="items.desconto !== 0" class="ml-3 text-left texts">
+                            <strong class="mr-2 text-h4 line-through">- Price: </strong>
+                            <span class="text-h4 line-through">
+                              €{{ items.preco }}
+                            </span>
+                          </div> <br>
+                          <div v-if="items.desconto !== 0" class="ml-3 text-left texts">
+                            <strong class="mr-2 text-h4">- Sale Price: </strong>
+                            <span class="text-h4">
+                              €{{ getDesconto(items.preco) }}
+                            </span>
+                          </div> <br>
+                          <div class="ml-3 mt-n5 text-left texts">
+                            <strong class="mr-2 text-body-1">- Inventory: </strong>
+                            <span class="text-body-1">
+                              {{ estoque_atual.estoque_atual }}
+                            </span> 
+                            <span v-if="estoque_atual.estoque_atual == 0">(Out of stock)</span>
+                          </div> <br>
+                          <div class="text-left">
+                            <v-btn v-if="$auth.loggedIn" color="#b86935" class="white--text mb-3" @click="requisicao()">Make a request</v-btn>
+                            <p v-if="$auth.loggedIn"> Or send us message: +353 089 941 4489</p>
+                          </div>
+                          <div class="text-left">
+                            <span  v-if="!$auth.loggedIn" class="red--text">You must be logged in to request this product</span>
+                          </div>
+                      </v-sheet>
+                  </v-col>      
+          </v-row>
+        </div>
+        <div class="hidden-sm-and-up">
+            <v-row>
+                    <v-col cols="12">
+                        <v-carousel class="white" max-width="500" height="600" :show-arrows="false" virtual-mode>
+                            <v-carousel-item
+                                v-for="(n,i) in imgs"
+                                :key="i"
+                                :src="n"
+                                contain
+                                virtual-mode
+                                :cycle="true"
+                            ></v-carousel-item>
+                        </v-carousel>
+                    </v-col>
+            </v-row>
+            <v-row>     
+                    <v-col class="mt-5" cols="12">
+                        <v-sheet class="" color="white" height="auto">
+                            <v-card-title class="texts mb-n3">
+                              {{ items.titulo }}
+                            </v-card-title>
+                                <div class="text-left texts ml-4 mb-2">
+                                  {{ items.subtitulo }}
+                                </div>
+                            <v-row class="ml-1 mt-n1 mb-1">
+                                <v-rating class="ml-1 mb-2 texts text-left" length="5" v-model="rating" color="warning" readonly small half-increments></v-rating>
+                                <span class="mt-2 ml-3 text-caption texts text-left">
+                                  {{ rating }} stars - ({{ reviews }} reviews)
+                                </span>
+                            </v-row>
+                            <v-divider width="60%" class="texts mb-2"></v-divider>
+                            <div class="ml-3 text-left texts">
+                              <strong class="mr-2 smaller-text">- Product code:</strong>
+                              <span class="smaller-text">
+                                {{ items.cod_prod }}
+                              </span>
+                            </div> <br>
+                            <div class="ml-3 text-left texts">
+                              <strong class="mr-2">- Type: </strong>
+                              <span>
+                                {{ items.tipo }}
+                              </span>
+                            </div> <br>
+                            <div class="ml-3 text-left texts">
+                              <strong class="mr-2">- Material: </strong>
+                              <span>
+                                {{ items.material }}
+                              </span>
+                            </div> <br>
+                            <div class="ml-3 text-left texts">
+                              <strong class="mr-2">- Stone: </strong>
+                              <span>
+                                {{ items.pedra }}
+                              </span>
+                            </div> <br>
+                            <div class="ml-3 text-left texts">
+                              <strong class="mr-2">- Weight: </strong>
+                              <span>
+                                {{ items.peso }} grams
+                              </span>
+                            </div> <br>
+                            <div class="ml-3 text-left texts">
+                              <strong class="mr-2">- About: </strong>
+                            </div> <br>
+                            <div class="ml-5 mt-n5 mb-3 text-left texts">
+                              <span>
+                                {{ items.comentario }}
+                              </span>
+                            </div>
+                            <div v-if="items.desconto == 0" class="ml-3 text-left texts">
+                              <strong class="mr-2 text-h4">- Price: </strong>
+                              <span class="text-h4">
+                                €{{ items.preco }}
+                              </span>
+                            </div> <br>
+                            <div v-if="items.desconto !== 0" class="ml-3 text-left texts">
+                              <strong class="mr-2 text-h4 line-through">- Price: </strong>
+                              <span class="text-h4 line-through">
+                                €{{ items.preco }}
+                              </span>
+                            </div> <br>
+                            <div v-if="items.desconto !== 0" class="ml-3 text-left texts">
+                              <strong class="mr-2 text-h4">- Sale Price: </strong>
+                              <span class="text-h4">
+                                €{{ getDesconto(items.preco) }}
+                              </span>
+                            </div> <br>
+                            <div class="ml-3 mt-n5 text-left texts">
+                              <strong class="mr-2 text-body-1">- Inventory: </strong>
+                              <span class="text-body-1">
+                                {{ estoque_atual.estoque_atual }}
+                              </span> 
+                              <span v-if="estoque_atual.estoque_atual == 0">(Out of stock)</span>
+                            </div> <br>
+                            <div class="text-left">
+                              <v-btn v-if="$auth.loggedIn" color="#b86935" class="white--text mb-3" @click="requisicao()">Make a request</v-btn>
+                              <p v-if="$auth.loggedIn"> Or send us message: +353 089 941 4489</p>
+                            </div>
+                            <div class="text-left">
+                              <span  v-if="!$auth.loggedIn" class="red--text">You must be logged in to request this product</span>
+                            </div>
+                        </v-sheet>
+                    </v-col>
+            </v-row>      
+        </div>
         <v-row>
             <v-col v-if="$auth.loggedIn" align-self="center" xs="12">
                 <v-expansion-panels>
@@ -278,7 +385,7 @@
                     </v-sheet>
             </v-col>
         </v-row>
-    </v-container>
+  </v-sheet>    
 </template>
 
 <script>

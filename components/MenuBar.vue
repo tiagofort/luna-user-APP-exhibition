@@ -23,12 +23,12 @@
             </v-tabs>
             <v-spacer></v-spacer>
             <div v-if="!$auth.loggedIn" class="mr-2">
-              <v-btn icon color="white" to="/login" class="mr-5 hidden-sm-and-down">
+              <v-btn icon color="white" to="/login" class="mr-5 hidden-xs-only">
                   <v-icon color="#b86935" class="mr-1">mdi-login</v-icon>
-                  <span class="mr-6 hidden-sm-and-down texts">Login</span>
+                  <span class="mr-6 hidden-xs-only texts">Login</span>
               </v-btn>
             </div>
-            <div v-if="$auth.loggedIn" class="mr-2 hidden-sm-and-down">
+            <div v-if="$auth.loggedIn" class="mr-2 hidden-xs-only">
               <v-btn icon color="white" @click="$auth.logout()">
                   <v-icon color="#b86935" class="mr-1">mdi-logout</v-icon>
                   <span class="mr-6 texts">Logout</span>
