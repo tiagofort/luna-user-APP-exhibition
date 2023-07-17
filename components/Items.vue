@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col align-self="center">
-       <p class="texts text-lg-h6">What is new?</p>
+       <p class="font-title">What is new?</p>
       </v-col>
     </v-row>
     <v-row>
@@ -29,14 +29,14 @@
               </a>  
             </template>
           </v-hover>
-          <a @click="openItem(item._id)"><p class="texts text-left mt-2">{{ item.titulo + ' - ' + item.pedra }}</p></a>
-          <p class="text-left mt-n2">{{ item.preco+'€' }}</p>
+          <a @click="openItem(item._id)"><p class="font-texts text-left mt-2">{{ item.titulo + ' - ' + item.pedra }}</p></a>
+          <p class="text-left mt-n2 font-texts">{{ item.preco+'€' }}</p>
         </v-sheet>
       </v-col>
     </v-row>
     <v-row>
       <v-col align-self="center">
-        <button @click="openItens('all')" color="#b86935" class="custom-btn btn">View All</button>
+        <button @click="openItens('all')" color="#b86935" class="custom-btn btn">VIEW ALL</button>
       </v-col>
     </v-row>
   </v-container>
@@ -87,9 +87,24 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-.texts {
-    color: #b86935;
+.font-title{
+  font-family: 'Lato', sans-serif;
+  font-size: 25px;
+  color: #b86935;
+}
+
+.font-texts {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #b86935;
+}
+
+@media (max-width: 300px) {
+  font-texts {
+    font-size: 12px; /* Adjust the font size as needed */
+  }
 }
 
 a {

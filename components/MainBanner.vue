@@ -10,23 +10,11 @@
           ></v-img>
         </v-col>
       </v-row>
-    <!-- <v-banner
-        color="#FFFFFF"
-        dark
-        class=""
-        :width="getMaxWidth"
-    > -->
-      <!-- <v-responsive
-        :aspect-ratio="getAspectRatio"
-      > -->
-        
-      <!-- </v-responsive> -->
-    <!-- </v-banner> -->
   </v-container>
 </template>
   
 <script>
-  import banner from '@/static/banner/banner_ulti.jpeg';
+  import banner from '@/static/banner/banner_final.jpeg';
   export default {
     data() {
       return {

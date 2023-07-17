@@ -16,7 +16,6 @@
                   @click="openPage(link.id)"
                   router
                   exact
-                 
                 >
                   <v-icon color="#b86935" class="mr-2 font-weight-bold">{{ link.icon }}</v-icon>
                   <span class="texts text--lighten-2">{{ link.title }}</span>
@@ -24,13 +23,13 @@
             </v-tabs>
             <v-spacer></v-spacer>
             <div v-if="!$auth.loggedIn" class="mr-2">
-              <v-btn icon to="/login" class="mr-5 hidden-sm-and-down">
+              <v-btn icon color="white" to="/login" class="mr-5 hidden-sm-and-down">
                   <v-icon color="#b86935" class="mr-1">mdi-login</v-icon>
                   <span class="mr-6 hidden-sm-and-down texts">Login</span>
               </v-btn>
             </div>
             <div v-if="$auth.loggedIn" class="mr-2 hidden-sm-and-down">
-              <v-btn icon @click="$auth.logout()">
+              <v-btn icon color="white" @click="$auth.logout()">
                   <v-icon color="#b86935" class="mr-1">mdi-logout</v-icon>
                   <span class="mr-6 texts">Logout</span>
               </v-btn>
@@ -67,22 +66,26 @@
                 >
                   <v-list-item v-for="(menu,i) in links" :key="i" @click="openPage(menu.id)" link>
                       <v-list-item-icon>
-                        <v-icon color="#b86935">{{ menu.icon }}</v-icon>
+                          <v-icon color="#b86935">
+                            {{ menu.icon }}
+                          </v-icon>
                       </v-list-item-icon>
-                      <v-list-item-title class="texts">{{ menu.title }}</v-list-item-title>
+                      <v-list-item-title class="texts text-subtitle-1">
+                          {{ menu.title }}
+                      </v-list-item-title>
                   </v-list-item>
                 </v-list-item-group>
             </v-list>
             <v-spacer></v-spacer>
                     <template v-slot:append>
                         <div v-if="!$auth.loggedIn" class="pa-2 mb-10">
-                          <v-btn block text icon to="/login" class="mr-5">
+                          <v-btn block icon color="white" to="/login" class="mr-5">
                               <v-icon color="#b86935" class="mr-1">mdi-login</v-icon>
                               <span class="texts">Login</span>
                           </v-btn>
                         </div>
                         <div v-if="$auth.loggedIn" class="pa-2 mb-10">
-                          <v-btn block text icon @click="$auth.logout()">
+                          <v-btn block icon @click="$auth.logout()">
                               <v-icon color="#b86935" class="mr-1">mdi-logout</v-icon>
                               <span class="texts">Logout</span>
                           </v-btn>
@@ -93,6 +96,7 @@
 </template>
 <script>
 export default {
+
     data: () => ({
       drawer: false,
       group: false,  
@@ -118,37 +122,45 @@ export default {
         }
       ],
     }),
+
     methods: {
+
       openPage(id){
           if(id == 0){
-              this.$router.push({
-                name: "index",
-              });
+            this.$router.push({
+              name: "index",
+            });
           }else if(id == 1){
-              this.$router.push({
-                name: "view_all-all",
-                params: { all: 'all' },
-              });
+            this.$router.push({
+              name: "view_all-all",
+              params: { all: 'all' },
+            });
           }else{
-              this.$router.push({
-                name: "about_us",
-              });
+            this.$router.push({
+              name: "about_us",
+            });
           }
       }
     },
+
     computed:{
+
       getHeight(){
         return this.$vuetify.breakpoint.height; 
       },
+
       getWidth(){
         return this.$vuetify.breakpoint.width - (this.$vuetify.breakpoint.width * 0.01);
       },
+
       getApp(){
         return this.$vuetify.breakpoint.xs ? true : false;
       },
+
       getAbsolute(){
         return this.$vuetify.breakpoint.xs? false : true;
       }
+
     }
 }
 </script>
@@ -156,15 +168,16 @@ export default {
 <style>
 
 .span:hover {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 .texts {
-    color: #b86935;
+  color: #b86935;
 }
 
 .bottom-button {
   position: absolute;
   bottom: 0;
 }
+
 </style>
