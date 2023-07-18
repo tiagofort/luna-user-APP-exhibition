@@ -50,21 +50,30 @@ export default {
         }
       ]  
   }),
+
   methods:{
+
     openIntagram(url){
         window.open(url, '_blank');
     }
+
   },
+
   computed:{
+
     getWidth(){
       return this.$vuetify.breakpoint.width;
     },
+
   }
+
 }
 </script>
 
 <style>
+
 .texts {
     color: #b86935;
 }
+
 </style>

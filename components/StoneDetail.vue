@@ -25,25 +25,30 @@ export default {
         pedra: [],
       };
     },
+
     async mounted(){
        await this.getStone();
     },
+
     computed:{
         selecionado(){
             return this.pedra;
        } 
     },
+
     methods:{
+
         async getStone(){
             let param = this.getId();
             this.$axios
-                        .get(`/stone/buscar_pedra/${param}`)
-                        .then((response) => {
-                            this.pedra = response.data;
-                        }).catch((error) => {
-                            console.log(error);
-                        });
+                .get(`/stone/buscar_pedra/${param}`)
+                .then((response) => {
+                    this.pedra = response.data;
+                }).catch((error) => {
+                    console.log(error);
+                });
         },
+
        getId() {
             return window.location.pathname.split("/")[2];
        }, 

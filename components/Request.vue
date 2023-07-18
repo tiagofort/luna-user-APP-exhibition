@@ -17,12 +17,12 @@
                                     <v-btn color="#b86935" height="50" class="mt-2 white--text" @click="btRemove()">-</v-btn>
                                 </v-col>
                                 <v-col cols="4">
-                                <v-otp-input
-                                    v-model="data_request.qtd"
-                                    label="Quantity"
-                                    :length="1"
-                                    required
-                                ></v-otp-input>
+                                    <v-otp-input
+                                        v-model="data_request.qtd"
+                                        label="Quantity"
+                                        :length="1"
+                                        required
+                                    ></v-otp-input>
                                 </v-col>
                                 <v-col cols="4" class="text-left justify-center">
                                     <v-btn color="#b86935" height="50" class="mt-2 white--text" @click="btAdd()">+</v-btn>
@@ -42,21 +42,21 @@
                         </v-container>
                     </v-card-text>
                     <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                        color="red"
-                        text
-                        @click="closeRequest(false)"
-                    >
-                        Close
-                    </v-btn>
-                    <v-btn
-                        color="green"
-                        text
-                        @click="submeterPedido(data_request)"
-                    >
-                        Send
-                    </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="red"
+                            text
+                            @click="closeRequest(false)"
+                        >
+                            Close
+                        </v-btn>
+                        <v-btn
+                            color="green"
+                            text
+                            @click="submeterPedido(data_request)"
+                        >
+                            Send
+                        </v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -67,39 +67,38 @@
 <script>
 export default {
     data () {
-     return{
-       dialog: false,
-       data_request: {
-          qtd: '0',
-          obs: ''
-       }
-    }
-  },
-  components:{ },
-  async mounted() {
+        return{
+            dialog: false,
+            data_request: {
+                qtd: '0',
+                obs: ''
+            }
+        }
+    },
+
+    methods:{
+        btAdd(){
+            let temp = 0;
+            temp = parseInt(this.data_request.qtd) + 1;
+            this.data_request.qtd = temp.toString();
+        },
+
+        btRemove(){
+        if(parseInt(this.data_request.qtd) > 0){
+            let temp = 0;
+            temp = parseInt(this.data_request.qtd) - 1;
+            this.data_request.qtd = temp.toString();
+        }else{
+            this.data_request.qtd = '0';
+        }    
+        },
+
+        clear(){
+            this.data_request.qtd = '0'
+            this.data_request.obs = '';
+        }
+    },
     
-  },
-  methods:{
-    btAdd(){
-        let temp = 0;
-        temp = parseInt(this.data_request.qtd) + 1;
-        this.data_request.qtd = temp.toString();
-    },
-    btRemove(){
-      if(parseInt(this.data_request.qtd) > 0){
-        let temp = 0;
-        temp = parseInt(this.data_request.qtd) - 1;
-        this.data_request.qtd = temp.toString();
-      }else{
-        this.data_request.qtd = '0';
-      }    
-    },
-    clear(){
-        this.data_request.qtd = '0'
-        this.data_request.obs = '';
-    }
-  },
-  computed: {},
-  props: ["submeterPedido", "closeRequest", "dialogRequest"]    
+    props: ["submeterPedido", "closeRequest", "dialogRequest"]    
 }     
 </script>

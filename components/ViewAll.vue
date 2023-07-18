@@ -1,9 +1,9 @@
 <template>
-    <v-sheet class="mt-10" height="200vh">
+    <v-sheet class="mt-10" height="auto">
             <v-row>   
                     <v-col xs="12" sm="12" md="6" lg="3" xl="3">
                         <v-card width="390" height="680" class="hidden-sm-and-down pa-2">
-                            <v-card-title class="text-center texts">Filters</v-card-title>
+                            <div class="text-center texts line-title text-h6">Filters</div>
                             <v-card-title class="text-left subtitle-1 texts">Stones</v-card-title>
                             <v-combobox
                                 :items="pedras"
@@ -150,48 +150,61 @@ export default {
       itemsPerPage: 10,
       }
   },
+
   async mounted() {
     await this.getItens();
     await this.getCadProd();
   },
+
   computed:{
+
       getWidth(){
         return this.$vuetify.breakpoint.width;
       },
+
       getMaxWidth (){
         return this.$vuetify.breakpoint.width - (this.$vuetify.breakpoint.width * 0.2);
       },
+
       getCols(){
-           return this.$vuetify.breakpoint.mdAndUp ? 3 : 6;
+        return this.$vuetify.breakpoint.mdAndUp ? 3 : 6;
       },
+
       paginatedItems() {
-            const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-            const endIndex = startIndex + this.itemsPerPage;
-            return this.itens.slice(startIndex, endIndex);
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        return this.itens.slice(startIndex, endIndex);
       },
+
       totalPages() {
-            return Math.ceil(this.itens.length / this.itemsPerPage);
+        return Math.ceil(this.itens.length / this.itemsPerPage);
       },
+
       getPedras() {
         return this.pedras;
       } 
   },
+
   methods:{
+
    renderizar(){
       this.render += 1;
    },
+
    itemsVisibility(){
       this.show === true? this.show = false : this.show = true; 
    },
+
    async getItens (){
     let param = this.getId();
     this.$axios
-          .get(`/item/buscarPorParamentro/${param}`)
-          .then((response) => {
+        .get(`/item/buscarPorParamentro/${param}`)
+        .then((response) => {
             this.itens = response.data;
             this.backup_items = response.data;
-          })
+        })
    },
+
    async getCadProd() {
       await this.$axios.get("/cadastros/buscaCadProd").then((response) => {
             this.tipos = response.data.balde1;
@@ -200,18 +213,22 @@ export default {
             this.valores = response.data.balde4;
         });
     },
+
     getId() {
         return window.location.pathname.split("/")[2];
     },
+
     openItem(id) {
       this.$router.push({
           name: "accessories-acessories",
           params: { acessories: id },
       });
     },
+
     updatePage(page) {
         this.currentPage = page;
     },
+
     cleanFilter(){
         this.itens = this.backup_items;
         this.selectPedra = '';
@@ -221,6 +238,7 @@ export default {
         this.isOpen = [];
         this.show = true;
     },
+
     filters(){
         this.isOpen = [];
         this.show = true;
@@ -444,9 +462,7 @@ export default {
                         }   
            }
            this.itens = temp; 
-        }
-     
-        
+        }    
     },
   }         
 }
@@ -456,6 +472,19 @@ export default {
 
 .texts {
     color: #b86935;
+}
+
+.line-title {
+  background-image: linear-gradient(
+    to right,
+      #b86935,
+      white 35%,
+      white 65%,
+      #b86935
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 center;
 }
 
 </style>

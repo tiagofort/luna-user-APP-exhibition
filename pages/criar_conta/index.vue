@@ -1,17 +1,17 @@
 <template>
     <v-container class="fundo">
-        <CadastroUsuario textoBotao="Create" :submeterForm="salvarUsuario" />
+        <UserRegistration textoBotao="Create" :submeterForm="salvarUsuario" />
     </v-container>
 </template>
 
 <script>
-import CadastroUsuario from '@/components/CadastroUsuario.vue';
+import UserRegistration from '~/components/UserRegistration.vue';
 export default {
   data: () => ({
         
   }),
      components:{
-        CadastroUsuario
+      UserRegistration
   },
      methods:{
         async salvarUsuario(usuInfo){

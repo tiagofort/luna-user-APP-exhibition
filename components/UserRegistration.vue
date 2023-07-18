@@ -5,13 +5,12 @@
               cols="4"
               sm="2"
               class="hidden-sm-and-down"
-            >
-            </v-col>
-            <v-col
+            ></v-col>
+          <v-col
               cols="12"
               sm="8"
               align-self="center"
-            >
+          >
             <v-sheet
                 min-height="70vh"
                 rounded="lg"
@@ -110,14 +109,17 @@
                           {{textoBotao}}
                         </v-btn>
                      </v-form>
-                  </v-card>
+                </v-card>
             </v-sheet>
-            </v-col>
-            <v-col cols="4" sm="2" class="hidden-sm-and-down">
-            </v-col>
+          </v-col>
+          <v-col 
+              cols="4" 
+              sm="2" 
+              class="hidden-sm-and-down"
+          ></v-col>
         </v-row>
     </v-container>
-  </template>
+</template>
   
 <script>
 import validacao from '~/utils/validacao';
@@ -146,7 +148,9 @@ export default {
             ...validacao
         }
       },
+
       methods:{
+
         verificarEmail(){
           if(this.usuInfo.email != ''){  
             this.$axios
@@ -158,48 +162,51 @@ export default {
                 });
           }     
         },
+
         async efetuarCadastro(){
             await this.salvarAvatar();
             await this.submeterForm(this.usuInfo);
         },
+
         async salvarAvatar(){
             if (this.usuInfo.img != null) {
                 var formData = new FormData();
                 formData.append("avatar", this.usuInfo.img);
                 await this.$axios
-                    .post("/envio_avatar/salvar", formData)
-                    .then((response) => {
-                        this.setURL(response.data);
-                    })
-                    .catch((error) => {
-                        console.log({ error });
-                    });
+                          .post("/envio_avatar/salvar", formData)
+                          .then((response) => {
+                               this.setURL(response.data);
+                          })
+                          .catch((error) => {
+                                console.log({ error });
+                          });
             }
         },
+
         setURL(u){
             this.usuInfo.avatar = u != "" ? u : "";
         }
+
       },
+
       props: ["submeterForm", "textoBotao"]
 }  
-  </script>
+</script>
 
 <style scoped>
-    #login-page {
-        margin-top: 10px;
-    }
 
-    #logo-image {
-      margin-left: auto;
-      margin-right: auto;
-    }
+#login-page {
+    margin-top: 10px;
+    width: 100%;
+}
 
-    #login-page{
-      width: 100%;
-    }
+#logo-image {
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    .fundo{
-      background-color: #ffffff;
-    }
+.fundo{
+  background-color: #ffffff;
+}
   
 </style>

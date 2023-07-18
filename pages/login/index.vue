@@ -1,16 +1,16 @@
 <template>
     <v-container class="fundo" color="#0b0418">
-      <Autenticacao class="mb-5" textoBotao="Login" :submeterForm="logarUsuario"/>
+      <Authentication class="mb-5" textoBotao="Login" :submeterForm="logarUsuario"/>
     </v-container>
 </template>
 
 <script>
-import Autenticacao from '@/components/Autenticacao.vue';
+import Authentication from '~/components/Authentication.vue';
 
 export default {
   data: () => ({}),
   components:{
-    Autenticacao
+    Authentication
   },
   methods:{
       async logarUsuario(loginInfo){

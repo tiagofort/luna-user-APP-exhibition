@@ -45,35 +45,43 @@ export default {
            stone: '' 
         }
     },
+
     async mounted(){
        await this.initializingItens();
     },
+
     methods:{
         async initializingItens(){
-        this.stone = this.getParam().replace(/[^a-zA-Z]/g, " ");
-        this.stone = this.stone.replace(/\s+/g, " ");
-        console.log(this.stone)
-        this.$axios
-            .get(`item/buscarPorParamentro/${this.stone}`)
-            .then((response) => (this.items = response.data));
+            this.stone = this.getParam().replace(/[^a-zA-Z]/g, " ");
+            this.stone = this.stone.replace(/\s+/g, " ");
+            this.$axios
+                .get(`item/buscarPorParamentro/${this.stone}`)
+                .then((response) => (this.items = response.data));
         },
+
         getParam(){
             return window.location.pathname.split("/")[2];
         },
+
         openItem(id){
             this.$router.push({
             name: "accessories-acessories",
             params: { acessories: id },
             });
         } 
+
     },
+
     computed:{
+
         getCols(){
            return this.$vuetify.breakpoint.mdAndUp ? 3 : 6;
         },
+
         sliceItens(){
             return this.items.slice(0,4);
         }
+    
     }
 }      
 </script>

@@ -94,6 +94,7 @@
         </v-navigation-drawer>
     </div>
 </template>
+
 <script>
 export default {
 
@@ -126,21 +127,22 @@ export default {
     methods: {
 
       openPage(id){
-          if(id == 0){
-            this.$router.push({
-              name: "index",
-            });
-          }else if(id == 1){
-            this.$router.push({
-              name: "view_all-all",
-              params: { all: 'all' },
-            });
-          }else{
-            this.$router.push({
-              name: "about_us",
-            });
-          }
+        if(id == 0){
+          this.$router.push({
+            name: "index",
+          });
+        }else if(id == 1){
+          this.$router.push({
+            name: "view_all-all",
+            params: { all: 'all' },
+          });
+        }else{
+          this.$router.push({
+            name: "about_us",
+          });
+        }
       }
+
     },
 
     computed:{

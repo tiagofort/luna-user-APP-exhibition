@@ -746,10 +746,6 @@ computed: {
     color: #b86935;
 }
 
-.v-carousel__controls {
-    background: rgba(14, 13, 13, 0.3);  
-}
-
 .line-through{
   text-decoration: line-through;
 }

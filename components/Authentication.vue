@@ -5,13 +5,12 @@
               cols="4"
               sm="2"
               class="hidden-sm-and-down"
-            >
-            </v-col>
-            <v-col
+          ></v-col>
+          <v-col
               cols="12"
               sm="8"
               align-self="center"
-            >
+          >
             <v-sheet
                 min-height="70vh"
                 rounded="lg"
@@ -68,7 +67,7 @@
                           Create Account
                         </v-btn>
                      </v-form>
-                  </v-card>
+                </v-card>
             </v-sheet>
             <v-dialog
               v-model="dialog"
@@ -80,100 +79,108 @@
                   <span class="text-h5">Request to change password</span>
                 </v-card-title>
                 <v-form v-model="valido">
-                <v-card-text>
-                  <v-container>
-                    <v-row>    
-                        <span class="mb-3 ml-1 text-body-1">A link will be sent to your email to proceed with your password change request.</span>      
-                        <v-text-field v-model="email_recuperacao" :rules="[required('Email'), emailFormat()]" outlined label="Insert your email"></v-text-field>   
-                    </v-row>
-                  </v-container>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    color="red darken-1"
-                    text
-                    @click="dialog = false"
-                  >
-                    Close
-                  </v-btn>
-                  <v-btn
-                    :disabled="!valido"
-                    color="blue darken-1"
-                    text
-                    @click="enviarEmail()"
-                  >
-                    Send
-                  </v-btn>
-                </v-card-actions>
-              </v-form>
+                  <v-card-text>
+                    <v-container>
+                      <v-row>    
+                          <span class="mb-3 ml-1 text-body-1">A link will be sent to your email to proceed with your password change request.</span>      
+                          <v-text-field v-model="email_recuperacao" :rules="[required('Email'), emailFormat()]" outlined label="Insert your email"></v-text-field>   
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="red darken-1"
+                      text
+                      @click="dialog = false"
+                    >
+                      Close
+                    </v-btn>
+                    <v-btn
+                      :disabled="!valido"
+                      color="blue darken-1"
+                      text
+                      @click="enviarEmail()"
+                    >
+                      Send
+                    </v-btn>
+                  </v-card-actions>
+                </v-form>
               </v-card>  
             </v-dialog>    
-            </v-col>
-            <v-col cols="4" sm="2" class="hidden-sm-and-down">
-            </v-col>
+          </v-col>
+          <v-col 
+              cols="4" 
+              sm="2" 
+              class="hidden-sm-and-down"
+          ></v-col>
         </v-row>
     </v-container>
-  </template>
+</template>
   
 <script>
 import validacao from '@/utils/validacao';
 import logo from "~/static/general/logoLuna.svg";
+
 export default {
-      data() {
-        return{
-            dialog: false,
-            valido: false,
-            imgLogo: logo,
-            valido: false,
-            email_recuperacao: "",
-            mostrarSenhar: false,
-            usuInfo: {
-                email: '',
-                senha: ''
-            },
-            ...validacao
-        }
+    data() {
+      return{
+          dialog: false,
+          valido: false,
+          imgLogo: logo,
+          valido: false,
+          email_recuperacao: "",
+          mostrarSenhar: false,
+          usuInfo: {
+              email: '',
+              senha: ''
+          },
+          ...validacao
+      }
+    },
+
+    methods:{
+
+      redefinirSenha(){
+        this.dialog = true;
       },
-      methods:{
-        redefinirSenha(){
-          this.dialog = true;
-        },
-        enviarEmail(){
-          this.$axios.post('/usuario/esqueceu_senha', {
+        
+      enviarEmail(){
+        this.$axios.post('/usuario/esqueceu_senha', {
             email: this.email_recuperacao 
-          }).then((response) => {
+        }).then((response) => {
               this.dialog = false;
-          }).catch((error) => {
+        }).catch((error) => {
               console.log(error);
-          });
-        },
-        criarUsuario(){
-          this.$router.push({
-            name: "criar_conta",
-          });
-        }
+        });
       },
-      props: ["submeterForm", "textoBotao"]
+
+      criarUsuario(){
+        this.$router.push({
+          name: "criar_conta",
+        });
+      }
+      
+    },
+
+    props: ["submeterForm", "textoBotao"]
 }  
-  </script>
+</script>
 
 <style scoped>
-    #login-page {
-        margin-top: 10px;
-    }
 
-    #logo-image {
-      margin-left: auto;
-      margin-right: auto;
-    }
+#login-page {
+  margin-top: 10px;
+  width: 100%;
+}
 
-    #login-page{
-      width: 100%;
-    }
+#logo-image {
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    .fundo{
-      background-color: #ffffff;
-    }
+.fundo{
+  background-color: #ffffff;
+}
   
 </style>

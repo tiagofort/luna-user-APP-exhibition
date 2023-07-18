@@ -13,19 +13,19 @@
                 <v-row class="mb-5 pa-5" align="center" justify="center">
                       <v-col xs="12" sm="12" md="12" lg="4" class="d-flex justify-center align-center">
                             <v-sheet class="pa-1 hidden-xs-only">
-                                <p class="text-center texts text-lg-h5 font-title">Featured</p>
+                                <p class="text-center text-lg-h5 font-title mb-n1 line-title">Featured</p>
                                 <Featured />
                             </v-sheet>   
                       </v-col>
                       <v-col xs="12" sm="12" md="12" lg="4" class="hidden-sm-and-up">
                             <v-sheet class="pa-1">
-                                <p class="text-center texts text-lg-h5 font-title">Featured</p>
+                                <p class="text-center text-lg-h5 font-title mb-n1 line-title ">Featured</p>
                                 <Featured />
                             </v-sheet>   
                       </v-col>
                       <v-col xs="12" sm="12" md="12" lg="8" class="d-flex justify-center align-center">
-                            <v-sheet class="pa-5 ml-2">
-                                <p class="text-center texts text-lg-h5 font-title">Stones</p>
+                            <v-sheet class="pa-1 ml-2">
+                                <p class="text-center text-lg-h5 font-title line-title ">Stones</p>
                                 <Stones />
                             </v-sheet>          
                       </v-col>  
@@ -132,4 +132,18 @@ export default {
   font-family: 'Lato', sans-serif;
   color: #b86935;
 }
+
+.line-title {
+  background-image: linear-gradient(
+    to right,
+      #b86935,
+      white 35%,
+      white 65%,
+      #b86935
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 center;
+}
+
 </style>
