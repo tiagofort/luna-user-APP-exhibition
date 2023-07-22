@@ -243,7 +243,7 @@
         <v-row>
             <v-col v-if="$auth.loggedIn" align-self="center" xs="12">
                 <v-expansion-panels>
-                    <v-expansion-panel>
+                    <v-expansion-panel id="review" @click="scrollToSection('#review')">
                         <v-expansion-panel-header class="texts">
                             Review
                         </v-expansion-panel-header>
@@ -292,7 +292,7 @@
         <v-row>
             <v-col>
                 <v-expansion-panels>
-                    <v-expansion-panel>
+                    <v-expansion-panel id="comments" @click="scrollToSection('#comments')">
                         <v-expansion-panel-header class="texts">
                             Comments
                         </v-expansion-panel-header>
@@ -457,6 +457,11 @@ methods:{
   renderPage(){
     this.render += 1;
   }, 
+
+  scrollToSection(section){
+      this.$vuetify.goTo(section, { duration: 1000, offset: 0 });
+      this.drawer = false;
+  },
 
   getNovidades(){
     this.$axios
