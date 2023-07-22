@@ -27,7 +27,7 @@
         </v-card-text>
 
         <v-card-text class="texts pt-0">
-          <span class="texts">Lunas Cristais and team thank you for your visit. Enjoy and stay connected with us on our social networks. Stay tuned for news.</span> 
+          <span class="texts">Lunas Crystals and team thank you for your visit. Enjoy and stay connected with us on our social media. Stay tuned for news.</span> 
         </v-card-text>
       
         <v-divider></v-divider>

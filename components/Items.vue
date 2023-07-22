@@ -29,7 +29,7 @@
                 </template>
               </v-hover>
               <a @click="openItem(item._id)"><p class="font-texts text-left mt-2">{{ item.titulo + ' - ' + item.pedra }}</p></a>
-              <p class="text-left mt-n2 font-texts">{{ item.preco+'€' }}</p>
+              <p class="text-left mt-n2">{{ item.preco+'€' }}</p>
           </v-sheet>
         </v-col>
       </v-row>

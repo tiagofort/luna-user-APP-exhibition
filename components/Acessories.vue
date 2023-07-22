@@ -348,43 +348,45 @@
                 </v-expansion-panels>         
             </v-col>
         </v-row>
-        <div v-if="sliceItens.length > 0" class="mt-5 mb-5 text-h5 texts text-left">
-          What people usually buy together
-        </div>
-        <v-row>
-            <v-col
-                v-for="(item,i) in sliceItens"
-                :key="i"
-                :id="item._id"
-                class="d-flex justify-start child-flex"
-                :cols="getCols"
-            >
-                    <v-sheet max-width="250">
-                        <v-hover>
-                            <template v-slot:default="{ hover }">  
-                                <a>
-                                    <v-img
-                                      :src="hover? item.midia.url2 : item.midia.url1"
-                                      aspect-ratio="1"
-                                      max-width="250"
-                                      max-height="350"
-                                      class="grey lighten-2"
-                                      @click="openItem(item._id)"
-                                    ></v-img>
-                                </a>  
-                            </template>
-                        </v-hover>
-                        <a @click="openItem(item._id)">
-                          <p class="texts text-left mt-2">
-                            {{ item.titulo + ' - ' + item.pedra }}
+        <v-card class="pa-3 mt-2">
+          <div v-if="sliceItens.length > 0" class="mt-5 mb-5 text-body-1 texts text-left">
+            <strong>What people usually buy together</strong>
+          </div>
+          <v-row>
+              <v-col
+                  v-for="(item,i) in sliceItens"
+                  :key="i"
+                  :id="item._id"
+                  class="d-flex justify-start child-flex"
+                  :cols="getCols"
+              >
+                      <v-sheet max-width="250">
+                          <v-hover>
+                              <template v-slot:default="{ hover }">  
+                                  <a>
+                                      <v-img
+                                        :src="hover? item.midia.url2 : item.midia.url1"
+                                        aspect-ratio="1"
+                                        max-width="250"
+                                        max-height="350"
+                                        class="grey lighten-2"
+                                        @click="openItem(item._id)"
+                                      ></v-img>
+                                  </a>  
+                              </template>
+                          </v-hover>
+                          <a @click="openItem(item._id)">
+                            <p class="texts text-left mt-2">
+                              {{ item.titulo + ' - ' + item.pedra }}
+                            </p>
+                          </a>
+                          <p class="text-left mt-n2">
+                            {{ item.preco+'€' }}
                           </p>
-                        </a>
-                        <p class="text-left mt-n2">
-                          {{ item.preco+'€' }}
-                        </p>
-                    </v-sheet>
-            </v-col>
-        </v-row>
+                      </v-sheet>
+              </v-col>
+          </v-row>
+      </v-card>
   </v-sheet>    
 </template>
 
