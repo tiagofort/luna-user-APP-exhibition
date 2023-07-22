@@ -149,13 +149,19 @@ export default {
         this.$axios.post('/usuario/esqueceu_senha', {
             email: this.email_recuperacao 
         }).then((response) => {
+            this.dialog = false;
             this.$notifier.showMessage({ 
                 content: 'A link has been sent to your email address. Please check your inbox to proceed with password change.', 
                 color: 'green', 
                 time: 2000 
             });
+
+            this.$router.push({
+              name: "login",
+            });
+            
         }).catch((error) => {
-            console.log(error)
+            this.dialog = false;
             this.$notifier.showMessage({ 
                 content: error.response.data.message, 
                 color: 'red', 
