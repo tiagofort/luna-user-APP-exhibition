@@ -150,6 +150,7 @@ export default {
             email: this.email_recuperacao 
         }).then((response) => {
             this.dialog = false;
+            this.email_recuperacao = "";
             this.$notifier.showMessage({ 
                 content: 'A link has been sent to your email address. Please check your inbox to proceed with password change.', 
                 color: 'green', 
@@ -159,9 +160,10 @@ export default {
             this.$router.push({
               name: "login",
             });
-            
+
         }).catch((error) => {
             this.dialog = false;
+            this.email_recuperacao = "";
             this.$notifier.showMessage({ 
                 content: error.response.data.message, 
                 color: 'red', 

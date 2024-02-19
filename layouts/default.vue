@@ -1,6 +1,7 @@
 <template>
       <v-app id="inspire">
-          <MenuBar />
+          <!-- <MenuBar /> -->
+          <NavMenu />
             <v-main class="fundo" fluid>
                 <v-row>
                     <v-col 
@@ -20,6 +21,7 @@
 
 <script>
 import MenuBarVue from '~/components/MenuBar.vue';
+import NavMenu from '~/components/NavMenu.vue';
 import SnackBar from '~/components/SnackBar.vue';
 import Footer from '~/components/Footer.vue';
 
@@ -44,7 +46,7 @@ export default {
         }
       ],
   }),
-    components:{ MenuBarVue, SnackBar, Footer }
+    components:{ MenuBarVue, NavMenu, SnackBar, Footer }
 }
 </script>
 
